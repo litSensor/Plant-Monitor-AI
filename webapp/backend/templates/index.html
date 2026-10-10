@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Plant Monitor</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h1>Мониторинг растений</h1>
+
+<div id="health" class="health-bar"></div>
+
+<section>
+  <h2>Быстрые действия</h2>
+  <button id="snapAll">📷 Снять все растения</button>
+  <button id="downloadAll" class="secondary">📦 Скачать фото и дневники</button>
+  <span id="quickResult"></span>
+</section>
+
+<section>
+  <h2>Настройки</h2>
+  <div class="cam-info">
+    <span>Обнаружено камер: <b id="camCount">—</b></span>
+    <button id="checkCameras" type="button" class="secondary">Проверить камеры</button>
+  </div>
+  <ul id="camList" class="cam-list"></ul>
+
+  <label>Количество растений (не больше камер):
+    <input id="plants" type="number" min="1" max="10" value="2">
+  </label>
+  <label>Утренний снимок: <input id="morning" type="time" value="08:00"></label>
+  <label>Вечерний снимок: <input id="evening" type="time" value="20:00"></label>
+  <label>Часовой пояс: <input id="tz" type="text" value="Europe/Moscow"></label>
+
+  <fieldset>
+    <legend>Порог уверенности нейросети</legend>
+    <label>
+      <input id="useThreshold" type="checkbox">
+      Включить порог уверенности
+    </label>
+    <label>Минимальная уверенность (0–1):
+      <input id="minConf" type="number" min="0" max="1" step="0.05" value="0.4">
+    </label>
+    <p class="hint">Если уверенность модели ниже порога — в дневник пишется «не распознано».</p>
+  </fieldset>
+
+  <div id="namesBlock">
+    <label style="margin-top:.8rem">Названия растений (необязательно):</label>
+    <div id="plantNames"></div>
+  </div>
+
+  <fieldset style="border-color:#4a7">
+    <legend>🤖 Текстовый дневник (LLM)</legend>
+    <label>
+      <input id="useLlm" type="checkbox">
+      Генерировать описание словами (Ollama)
+    </label>
+    <p class="hint">LLM напишет 3–5 предложений о состоянии растения на основе данных нейросети и истории наблюдений.</p>
+  </fieldset>
+
+  <button id="save">Сохранить</button>
+</section>
+
+<section>
+  <h2>Прямая трансляция</h2>
+  <p class="hint">Живое видео с камеры. Работает только пока страница открыта.</p>
+  <label>Растение № <input id="streamPlant" type="number" min="1" max="10" value="1"></label>
+  <button id="streamStart">Начать трансляцию</button>
+  <button id="streamStop" class="secondary">Остановить</button>
+  <div id="streamBox" class="preview-box">
+    <span class="hint">Нажмите «Начать трансляцию».</span>
+  </div>
+</section>
+
+<section>
+  <h2>Фото по растению</h2>
+  <label>Растение № <input id="galleryPlant" type="number" min="1" max="10" value="1"></label>
+  <button id="galleryLoad">Показать фото</button>
+  <span id="galleryCount"></span>
+  <div id="galleryGrid" class="gallery-grid"></div>
+</section>
+
+<section>
+  <h2>Ручной снимок</h2>
+  <label>Растение № <input id="manualPlant" type="number" min="1" max="10" value="1"></label>
+  <label>Время:
+    <select id="manualTime">
+      <option value="morning">утро</option>
+      <option value="evening">вечер</option>
+    </select>
+  </label>
+  <button id="snap">📸 Снять и записать в дневник</button>
+  <button id="snapOnly" class="secondary">📷 Только фото (тест)</button>
+  <button id="describeBtn" class="secondary">🤖 Озвучить последнее фото (LLM)</button>
+  <pre id="log"></pre>
+</section>
+
+<section>
+  <h2>Общий дневник за период</h2>
+  <label>с <input id="perStart" type="date"></label>
+  <label>по <input id="perEnd" type="date"></label>
+  <button id="makePeriod">Сформировать</button>
+  <span id="periodResult"></span>
+</section>
+
+<section>
+  <h2>Итоговый вывод по растению</h2>
+  <label>Растение № <input id="sumPlant" type="number" min="1" max="10" value="1"></label>
+  <label>с <input id="sumStart" type="date"></label>
+  <label>по <input id="sumEnd" type="date"></label>
+  <button id="makeSummary">Сформировать</button>
+  <span id="summaryResult"></span>
+</section>
+
+<section>
+  <h2>Дневники</h2>
+  <ul id="diaryList"></ul>
+  <article id="diaryView"></article>
+</section>
+
+<section>
+  <h2>Журнал событий</h2>
+  <p class="hint">Последние строки логов сервера (systemd + app.log).</p>
+  <button id="logsLoad">Обновить</button>
+  <label style="margin-top:.5rem">
+    <input id="logsAuto" type="checkbox"> Автообновление (10 сек)
+  </label>
+  <pre id="logsBox" class="logs-box">Нажмите «Обновить».</pre>
+</section>
+
+<div id="lightbox" class="lightbox" style="display:none">
+  <span class="lightbox-close">✕</span>
+  <img id="lightboxImg" alt="">
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

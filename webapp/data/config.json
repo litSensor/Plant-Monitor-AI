@@ -1,0 +1,34 @@
+{
+  "plants_count": 1,
+  "plant_names": [
+    "Растение #1"
+  ],
+  "schedule": {
+    "morning": "08:00",
+    "evening": "20:00",
+    "timezone": "Europe/Moscow"
+  },
+  "camera": {
+    "type": "usb",
+    "devices": [
+      "/dev/v4l/by-id/usb-Chicony_Electronics_Co._Ltd._EasyCamera_0x0001-video-index0",
+      "/dev/v4l/by-id/usb-Jieli_Technology_USB_Composite_Device-video-index0"
+    ],
+    "urls": [],
+    "resolution": [
+      640,
+      480
+    ],
+    "warmup_frames": 8,
+    "settle_sec": 1.0
+  },
+  "analysis": {
+    "enabled": true,
+    "model_dir": "models",
+    "plant_classifier_weights": "models/plant_classifier.pth",
+    "leaf_seg_weights": "models/leaf_seg.pt",
+    "use_confidence_threshold": false,
+    "use_llm": false,
+    "min_confidence": 0.4
+  }
+}

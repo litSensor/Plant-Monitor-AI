@@ -1,0 +1,16 @@
+torch
+torchvision
+torchaudio
+tqdm
+Pillow
+supervision==0.23.0
+gradio<5,>=4.44.1
+ultralytics
+chardet
+wget
+yolov5
+setuptools
+scikit-learn
+timm
+lightning
+omegaconf

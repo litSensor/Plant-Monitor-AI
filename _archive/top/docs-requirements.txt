@@ -1,0 +1,9 @@
+mkdocs
+mkdocs-get-deps
+mkdocs-material
+mkdocs-material-extensions
+pymdown-extensions
+mkdocstrings
+mkdocstrings-python
+mkdocs-callouts
+mkdocs-git-revision-date-localized-plugin
