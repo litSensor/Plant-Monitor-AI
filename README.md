@@ -280,7 +280,7 @@ Beta phase — issues and PRs welcome, expect API churn.
 
 ## 📜 License
 
-MIT. See `LICENSE`. Uses [Microsoft Pytorch-Wildlife](https://github.com/microsoft/Pytorch-Wildlife) (MIT).
+Apache-2.0. See `LICENSE`. Uses [Microsoft Pytorch-Wildlife](https://github.com/microsoft/Pytorch-Wildlife) (MIT).
 
 ---
 
